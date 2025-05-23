@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "./styles/animations.css";
+@import "./styles/lessonDetail.css";
+
+@layer base {
+  html {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+}

@@ -1,0 +1,215 @@
+/* Modern lesson detail page styles */
+
+.lesson-detail-page-container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f9fafb;
+    position: relative;
+}
+
+/* Main content */
+.lesson-content {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Video container */
+.lesson-video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Video element */
+.lesson-video {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 300px);
+    display: block;
+}
+
+/* Document viewer */
+.lesson-document-viewer {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    position: relative;
+    overflow: hidden;
+    background-color: #f1f5f9;
+    border-radius: 0.5rem;
+}
+
+.lesson-document-viewer iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Lesson information card */
+.lesson-info-card {
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.lesson-info-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Lesson navigation */
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.lesson-nav-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #4b5563;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.lesson-nav-button:hover {
+    background-color: #f9fafb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.lesson-nav-button svg {
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.lesson-complete-button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+}
+
+.lesson-complete-button:hover {
+    background-color: #4338ca;
+}
+
+/* Resource items */
+.lesson-resource-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.lesson-resource-item:hover {
+    background-color: #f9fafb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.lesson-resource-icon {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+}
+
+.sidebar-toggle-visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.sidebar-toggle-hidden {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+/* Video container aspect ratio */
+.video-container {
+    position: relative;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.video-container video,
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Loading animations */
+.loading-pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Progress bar animation */
+.progress-bar-animate {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Lesson list item hover effects */
+.lesson-item {
+    transition: all 0.2s ease;
+}
+
+.lesson-item:hover {
+    transform: translateX(4px);
+}
+
+/* Completed lesson checkmark animation */
+@keyframes checkmark {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.completed-checkmark {
+    animation: checkmark 0.3s ease-in-out forwards;
+}
