@@ -35,6 +35,7 @@ VITE_BACKEND_URL = http://localhost:3000
 1. **Go to GitHub Repository**
 2. **Navigate to**: Settings > Secrets and variables > Actions
 
+
 ### For Variables:
 3. **Click**: Variables tab
 4. **Click**: "New repository variable"
