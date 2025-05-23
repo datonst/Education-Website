@@ -17,6 +17,7 @@ env:
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
+  security-events: write  # This is required for uploading SARIF results
 
 jobs:
   build-and-push:
@@ -96,9 +97,22 @@ jobs:
 
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v3
-      if: always()
+      if: always() && github.event_name != 'pull_request'
       with:
         sarif_file: 'trivy-results.sarif'
+      continue-on-error: true
+
+    - name: Display Trivy scan results (fallback)
+      if: always()
+      run: |
+        echo "📊 Trivy Security Scan Results:"
+        if [ -f "trivy-results.sarif" ]; then
+          echo "✅ SARIF file generated successfully"
+          # Show summary of findings
+          cat trivy-results.sarif | jq -r '.runs[0].results | length' 2>/dev/null || echo "Unable to parse SARIF results"
+        else
+          echo "❌ No SARIF file found"
+        fi
 
     - name: Output image information
       run: |
