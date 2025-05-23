@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./PaaS_AWS-Education-Web-Backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      # Add your environment variables here
+      - MONGODB_URI=${MONGODB_URI:-mongodb://localhost:27017/education_db}
+      - JWT_SECRET=${JWT_SECRET:-your-jwt-secret}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+    volumes:
+      - ./PaaS_AWS-Education-Web-Backend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./PaaS_AWS-Education-Web-Frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_AWS_REGION=${VITE_AWS_REGION:-us-east-1}
+        - VITE_AWS_USER_POOL_ID=${VITE_AWS_USER_POOL_ID}
+        - VITE_AWS_USER_POOL_CLIENT_ID=${VITE_AWS_USER_POOL_CLIENT_ID}
+        - VITE_DOCUMENTDB_URI=${VITE_DOCUMENTDB_URI}
+        - VITE_DOCUMENTDB_DBNAME=${VITE_DOCUMENTDB_DBNAME:-education_db}
+        - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:3000}
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_ROOT_USERNAME:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD:-password}
+      - MONGO_INITDB_DATABASE=${MONGODB_DATABASE:-education_db}
+    volumes:
+      - mongodb_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

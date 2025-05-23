@@ -1,0 +1,57 @@
+# Environment variables
+.env
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Specific .env files
+PaaS_AWS-Education-Web-Backend/.env
+PaaS_AWS-Education-Web-Frontend/.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Node modules
+node_modules/
+*/node_modules/
+
+# Build outputs
+dist/
+build/
+*/dist/
+*/build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# AWS specific
+.aws/
+
+# Docker
+*.log 
