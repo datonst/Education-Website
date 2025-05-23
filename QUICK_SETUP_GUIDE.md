@@ -7,8 +7,8 @@
 ```
 AWS_REGION = ap-southeast-1
 BACKEND_PORT = 3000
-BACKEND_ECR_REPOSITORY = paas-education-backend
-FRONTEND_ECR_REPOSITORY = paas-education-frontend
+BACKEND_ECR_REPOSITORY = team4uet-backend
+FRONTEND_ECR_REPOSITORY = team4uet-frontend
 VITE_DOCUMENTDB_DBNAME = users
 ECS_CLUSTER_NAME = your-ecs-cluster-name
 ECS_BACKEND_SERVICE_NAME = your-backend-service-name
